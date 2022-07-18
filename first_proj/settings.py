@@ -9,6 +9,14 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import environ
+import os
+
+env = environ.Env(
+	# set casting, default value
+	DEBUG=(bool, False)
+)
+
 
 from pathlib import Path
 
@@ -74,10 +82,7 @@ WSGI_APPLICATION = 'first_proj.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db(),  
 }
 
 
